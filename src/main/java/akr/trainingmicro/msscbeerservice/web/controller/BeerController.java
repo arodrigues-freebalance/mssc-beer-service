@@ -2,7 +2,6 @@ package akr.trainingmicro.msscbeerservice.web.controller;
 
 import java.util.UUID;
 
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,24 +12,31 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import akr.trainingmicro.msscbeerservice.services.BeerService;
 import akr.trainingmicro.msscbeerservice.web.model.BeerDto;
+import akr.trainingmicro.msscbeerservice.web.model.BeerStyleEnum;
 
 @RequestMapping("/api/v1/beer")
 @RestController
 public class BeerController {
 
-    private final BeerService beerService;
-
-    public BeerController(BeerService beerService) {
-        this.beerService = beerService;
-    }
+//    private final BeerService beerService;
+//
+//    public BeerController(BeerService beerService) {
+//        this.beerService = beerService;
+//    }
 	
 	
 	@GetMapping({"/{beerId}"})
 	public ResponseEntity<BeerDto> getBeerId(@PathVariable("beerId") UUID beerId){
 		
-		return new ResponseEntity<>(beerService.getBeerById(beerId), HttpStatus.OK);
+		//return new ResponseEntity<>(beerService.getBeerById(beerId), HttpStatus.OK);
+
+		
+		return new ResponseEntity<BeerDto>(BeerDto.builder().id(UUID.randomUUID())
+	                .beerName("Galaxy Cat")
+	                .beerStyle(BeerStyleEnum.LAGER)
+	                .build(),HttpStatus.OK);
+		
 		
 	}
 	
@@ -38,19 +44,19 @@ public class BeerController {
     @PostMapping // POST - create new beer
     public ResponseEntity<BeerDto> saveNewBear(@RequestBody BeerDto beerDto){
 
-        BeerDto savedDto = beerService.saveNewBeer(beerDto);
+//        BeerDto savedDto = beerService.saveNewBeer(beerDto);
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        //todo add hostname to url
+//        headers.add("Location", "/api/v1/beer/" + savedDto.getId().toString());
 
-        HttpHeaders headers = new HttpHeaders();
-        //todo add hostname to url
-        headers.add("Location", "/api/v1/beer/" + savedDto.getId().toString());
-
-        return new ResponseEntity<BeerDto>(headers, HttpStatus.CREATED);
+        return new ResponseEntity<BeerDto>(HttpStatus.CREATED);
     }	
     
     @PutMapping({"/{beerId}"})
     public ResponseEntity<BeerDto> updateBeerById(@PathVariable("beerId") UUID beerId, @RequestBody BeerDto beerDto){
 
-        beerService.updateBeerById(beerId, beerDto);
+//        beerService.updateBeerById(beerId, beerDto);
 
         return new ResponseEntity<BeerDto>(HttpStatus.NO_CONTENT);
     }    

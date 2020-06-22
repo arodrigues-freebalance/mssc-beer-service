@@ -15,7 +15,8 @@ public class BeerServiceImpl implements BeerService {
 	       return BeerDto.builder().id(UUID.randomUUID())
 	                .beerName("Galaxy Cat")
 	                .beerStyle(BeerStyleEnum.LAGER)
-	                .build();	}
+	                .build();	
+	}
 
 	@Override
 	public BeerDto saveNewBeer(BeerDto beerDto) {
