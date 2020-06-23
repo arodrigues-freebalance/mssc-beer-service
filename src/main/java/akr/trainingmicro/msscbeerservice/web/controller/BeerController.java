@@ -2,6 +2,8 @@ package akr.trainingmicro.msscbeerservice.web.controller;
 
 import java.util.UUID;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,7 +44,7 @@ public class BeerController {
 	
 	
     @PostMapping // POST - create new beer
-    public ResponseEntity<BeerDto> saveNewBear(@RequestBody BeerDto beerDto){
+    public ResponseEntity<BeerDto> saveNewBear(@Valid @RequestBody BeerDto beerDto){
 
 //        BeerDto savedDto = beerService.saveNewBeer(beerDto);
 //
@@ -54,7 +56,7 @@ public class BeerController {
     }	
     
     @PutMapping({"/{beerId}"})
-    public ResponseEntity<BeerDto> updateBeerById(@PathVariable("beerId") UUID beerId, @RequestBody BeerDto beerDto){
+    public ResponseEntity<BeerDto> updateBeerById(@PathVariable("beerId") UUID beerId, @Valid @RequestBody BeerDto beerDto){
 
 //        beerService.updateBeerById(beerId, beerDto);
 
