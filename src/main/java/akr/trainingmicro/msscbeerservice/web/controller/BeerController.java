@@ -14,53 +14,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import akr.trainingmicro.msscbeerservice.services.BeerService;
 import akr.trainingmicro.msscbeerservice.web.model.BeerDto;
-import akr.trainingmicro.msscbeerservice.web.model.BeerStyleEnum;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 @RequestMapping("/api/v1/beer")
 @RestController
 public class BeerController {
 
-//    private final BeerService beerService;
-//
-//    public BeerController(BeerService beerService) {
-//        this.beerService = beerService;
-//    }
-	
+    private final BeerService beerService;
 	
 	@GetMapping({"/{beerId}"})
 	public ResponseEntity<BeerDto> getBeerId(@PathVariable("beerId") UUID beerId){
 		
-		//return new ResponseEntity<>(beerService.getBeerById(beerId), HttpStatus.OK);
+		return new ResponseEntity<>(beerService.getById(beerId), HttpStatus.OK);
 
-		
-		return new ResponseEntity<BeerDto>(BeerDto.builder().id(UUID.randomUUID())
-	                .beerName("Galaxy Cat")
-	                .beerStyle(BeerStyleEnum.LAGER)
-	                .build(),HttpStatus.OK);
-		
-		
 	}
 	
 	
     @PostMapping // POST - create new beer
     public ResponseEntity<BeerDto> saveNewBear(@Valid @RequestBody BeerDto beerDto){
 
-//        BeerDto savedDto = beerService.saveNewBeer(beerDto);
-//
-//        HttpHeaders headers = new HttpHeaders();
-//        //todo add hostname to url
-//        headers.add("Location", "/api/v1/beer/" + savedDto.getId().toString());
-
-        return new ResponseEntity<BeerDto>(HttpStatus.CREATED);
+    	return new ResponseEntity<>(beerService.saveNewBeer(beerDto), HttpStatus.CREATED);
+  
     }	
     
     @PutMapping({"/{beerId}"})
     public ResponseEntity<BeerDto> updateBeerById(@PathVariable("beerId") UUID beerId, @Valid @RequestBody BeerDto beerDto){
-
-//        beerService.updateBeerById(beerId, beerDto);
-
-        return new ResponseEntity<BeerDto>(HttpStatus.NO_CONTENT);
+    	return new ResponseEntity<>(beerService.updateBeer(beerId, beerDto), HttpStatus.NO_CONTENT);
     }    
 	
 }
