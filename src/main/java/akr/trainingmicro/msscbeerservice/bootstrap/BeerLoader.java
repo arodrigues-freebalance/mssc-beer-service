@@ -4,8 +4,6 @@ import java.util.UUID;
 
 import org.springframework.boot.CommandLineRunner;
 
-import akr.trainingmicro.msscbeerservice.repositories.BeerRepository;
-
 //@Component
 public class BeerLoader implements CommandLineRunner {
 
@@ -17,11 +15,11 @@ public class BeerLoader implements CommandLineRunner {
 	 public static final UUID BEER_2_UUID = UUID.fromString("a712d914-61ea-4623-8bd0-32c0f6545bfd");
 	 public static final UUID BEER_3_UUID = UUID.fromString("026cc3c8-3a0c-4083-a05b-e908048c1b08");	
 	
-    private final BeerRepository beerRepository;
-
-    public BeerLoader(BeerRepository beerRepository) {
-        this.beerRepository = beerRepository;
-    }
+//    private final BeerRepository beerRepository;
+//
+//    public BeerLoader(BeerRepository beerRepository) {
+//        this.beerRepository = beerRepository;
+//    }
 
     @Override
     public void run(String... args) throws Exception {
