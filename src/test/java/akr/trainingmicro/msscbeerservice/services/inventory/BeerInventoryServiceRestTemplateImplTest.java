@@ -22,9 +22,9 @@ class BeerInventoryServiceRestTemplateImplTest {
 
     @Test
     void getOnhandInventory() {
-        Integer qoh = beerInventoryService.getOnhandInventory(UUID.fromString("74c844f2-3038-4d7e-b1b2-b3c66223fd9f"));
-
-        System.out.println(qoh);
+//        Integer qoh = beerInventoryService.getOnhandInventory(UUID.fromString("74c844f2-3038-4d7e-b1b2-b3c66223fd9f"));
+//
+//        System.out.println(qoh);
 
     }
 
