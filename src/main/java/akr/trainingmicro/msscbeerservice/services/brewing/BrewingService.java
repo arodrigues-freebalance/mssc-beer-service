@@ -1,4 +1,4 @@
-package akr.trainingmicro.msscbeerservice.services;
+package akr.trainingmicro.msscbeerservice.services.brewing;
 
 import java.util.List;
 
