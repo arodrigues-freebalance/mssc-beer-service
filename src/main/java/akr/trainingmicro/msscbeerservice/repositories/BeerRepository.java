@@ -4,12 +4,12 @@ import java.util.UUID;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import akr.trainingmicro.msscbeerservice.domain.Beer;
 import akr.trainingmicro.msscbeerservice.web.model.BeerStyleEnum;
 
-public interface BeerRepository extends PagingAndSortingRepository<Beer, UUID> {
+public interface BeerRepository extends JpaRepository<Beer, UUID> {
 	
     Page<Beer> findAllByBeerName(String beerName, Pageable pageable);
 
