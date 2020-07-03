@@ -3,17 +3,19 @@ package akr.trainingmicro.msscbeerservice.events;
 import java.io.Serializable;
 
 import akr.trainingmicro.msscbeerservice.web.model.BeerDto;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Data
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class BeerEvent implements Serializable{
 
 	private static final long serialVersionUID = 4642844020950488476L;
 	
-	private final BeerDto beerDto;
+	private BeerDto beerDto;
 	
 }
