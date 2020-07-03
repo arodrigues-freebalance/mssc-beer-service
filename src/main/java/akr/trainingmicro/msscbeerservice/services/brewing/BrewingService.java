@@ -31,8 +31,8 @@ public class BrewingService {
         beers.forEach(beer -> {
             Integer invQOH = beerInventoryService.getOnhandInventory(beer.getId());
 
-            log.info("Min Onhand is: " + beer.getMinOnHand());
-            log.info("Inventory is: "  + invQOH);
+            log.debug("Min Onhand is: " + beer.getMinOnHand());
+            log.debug("Inventory is: "  + invQOH);
 
             if(beer.getMinOnHand() >= invQOH){
                 jmsTemplate.convertAndSend(JmsConfig.BREWING_REQUEST_QUEUE, new BrewBeerEvent(beerMapper.beerToBeerDto(beer)));
