@@ -1,4 +1,4 @@
-package akr.microtraining.msscbeerservice.web.model;
+package akr.microtraining.brewery.model;
 
 import java.io.Serializable;
 import java.util.List;
@@ -10,8 +10,6 @@ import org.springframework.data.domain.Pageable;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
-
-import akr.microtraining.common.events.BeerDto;
 
 public class BeerPagedList extends PageImpl<BeerDto> implements Serializable {
 

@@ -2,7 +2,7 @@ package akr.microtraining.msscbeerservice.web.mappers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import akr.microtraining.common.events.BeerDto;
+import akr.microtraining.brewery.model.BeerDto;
 import akr.microtraining.msscbeerservice.domain.Beer;
 import akr.microtraining.msscbeerservice.services.inventory.BeerInventoryService;
 

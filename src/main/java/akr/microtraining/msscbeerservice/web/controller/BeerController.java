@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import akr.microtraining.common.events.BeerDto;
-import akr.microtraining.common.events.BeerStyleEnum;
+import akr.microtraining.brewery.model.BeerDto;
+import akr.microtraining.brewery.model.BeerPagedList;
+import akr.microtraining.brewery.model.BeerStyleEnum;
 import akr.microtraining.msscbeerservice.services.BeerService;
-import akr.microtraining.msscbeerservice.web.model.BeerPagedList;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

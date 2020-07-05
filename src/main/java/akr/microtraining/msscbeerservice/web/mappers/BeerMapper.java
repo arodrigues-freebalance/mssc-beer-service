@@ -3,7 +3,7 @@ package akr.microtraining.msscbeerservice.web.mappers;
 import org.mapstruct.DecoratedWith;
 import org.mapstruct.Mapper;
 
-import akr.microtraining.common.events.BeerDto;
+import akr.microtraining.brewery.model.BeerDto;
 import akr.microtraining.msscbeerservice.domain.Beer;
 
 @Mapper(uses = {DateMapper.class})

@@ -4,9 +4,9 @@ import java.util.UUID;
 
 import org.springframework.data.domain.PageRequest;
 
-import akr.microtraining.common.events.BeerDto;
-import akr.microtraining.common.events.BeerStyleEnum;
-import akr.microtraining.msscbeerservice.web.model.BeerPagedList;
+import akr.microtraining.brewery.model.BeerDto;
+import akr.microtraining.brewery.model.BeerPagedList;
+import akr.microtraining.brewery.model.BeerStyleEnum;
 
 public interface BeerService {
 	

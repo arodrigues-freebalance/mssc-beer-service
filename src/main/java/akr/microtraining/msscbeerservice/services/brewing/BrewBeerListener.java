@@ -5,8 +5,8 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import akr.microtraining.common.events.BeerDto;
-import akr.microtraining.common.events.NewInventoryEvent;
+import akr.microtraining.brewery.model.BeerDto;
+import akr.microtraining.brewery.model.events.NewInventoryEvent;
 import akr.microtraining.msscbeerservice.config.JmsConfig;
 import akr.microtraining.msscbeerservice.domain.Beer;
 import akr.microtraining.msscbeerservice.events.BrewBeerEvent;

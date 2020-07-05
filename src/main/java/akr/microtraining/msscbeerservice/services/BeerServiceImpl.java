@@ -9,13 +9,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import akr.microtraining.common.events.BeerDto;
-import akr.microtraining.common.events.BeerStyleEnum;
+import akr.microtraining.brewery.model.BeerDto;
+import akr.microtraining.brewery.model.BeerPagedList;
+import akr.microtraining.brewery.model.BeerStyleEnum;
 import akr.microtraining.msscbeerservice.domain.Beer;
 import akr.microtraining.msscbeerservice.repositories.BeerRepository;
 import akr.microtraining.msscbeerservice.web.controller.NotFoundException;
 import akr.microtraining.msscbeerservice.web.mappers.BeerMapper;
-import akr.microtraining.msscbeerservice.web.model.BeerPagedList;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

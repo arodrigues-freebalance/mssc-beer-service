@@ -20,8 +20,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import akr.microtraining.common.events.BeerDto;
-import akr.microtraining.common.events.BeerStyleEnum;
+import akr.microtraining.brewery.model.BeerDto;
+import akr.microtraining.brewery.model.BeerStyleEnum;
 import akr.microtraining.msscbeerservice.bootstrap.BeerLoader;
 import akr.microtraining.msscbeerservice.services.BeerService;
 import akr.microtraining.msscbeerservice.web.controller.BeerController;

@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import akr.microtraining.common.events.BeerStyleEnum;
+import akr.microtraining.brewery.model.BeerStyleEnum;
 import akr.microtraining.msscbeerservice.domain.Beer;
 
 public interface BeerRepository extends JpaRepository<Beer, UUID> {

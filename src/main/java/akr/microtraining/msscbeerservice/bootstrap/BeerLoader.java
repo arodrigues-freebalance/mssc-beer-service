@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import akr.microtraining.common.events.BeerStyleEnum;
+import akr.microtraining.brewery.model.BeerStyleEnum;
 import akr.microtraining.msscbeerservice.domain.Beer;
 import akr.microtraining.msscbeerservice.repositories.BeerRepository;
 import lombok.RequiredArgsConstructor;

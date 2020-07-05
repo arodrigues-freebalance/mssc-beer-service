@@ -1,7 +1,7 @@
 package akr.microtraining.msscbeerservice.events;
 
-import akr.microtraining.common.events.BeerDto;
-import akr.microtraining.common.events.BeerEvent;
+import akr.microtraining.brewery.model.BeerDto;
+import akr.microtraining.brewery.model.events.BeerEvent;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
