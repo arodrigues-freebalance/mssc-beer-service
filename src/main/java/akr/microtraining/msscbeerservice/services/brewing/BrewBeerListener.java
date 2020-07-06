@@ -38,10 +38,6 @@ public class BrewBeerListener {
 		
 		jmsTemplate.convertAndSend(JmsConfig.NEW_INVENTORY_QUEUE, newInventoryEvent);
 		
-
-		
-		
-		
 	}
 	
 }
