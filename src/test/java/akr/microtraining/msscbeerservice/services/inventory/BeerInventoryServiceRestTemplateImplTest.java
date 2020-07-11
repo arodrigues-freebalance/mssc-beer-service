@@ -1,14 +1,10 @@
 package akr.microtraining.msscbeerservice.services.inventory;
 
-import java.util.UUID;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import akr.microtraining.msscbeerservice.services.inventory.BeerInventoryService;
 
 @Disabled // utility for manual testing
 @SpringBootTest

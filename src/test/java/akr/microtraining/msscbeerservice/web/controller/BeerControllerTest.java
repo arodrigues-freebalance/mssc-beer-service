@@ -24,7 +24,6 @@ import akr.microtraining.brewery.model.BeerDto;
 import akr.microtraining.brewery.model.BeerStyleEnum;
 import akr.microtraining.msscbeerservice.bootstrap.BeerLoader;
 import akr.microtraining.msscbeerservice.services.BeerService;
-import akr.microtraining.msscbeerservice.web.controller.BeerController;
 
 @WebMvcTest(BeerController.class)
 class BeerControllerTest {
