@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import akr.microtraining.msscbeerservice.config.FeignClientConfig;
 import akr.microtraining.msscbeerservice.services.inventory.model.BeerInventoryDto;
 
-@FeignClient(name = "beer-inventory-service", fallback = InventoryServiceFeignClientFailover.class)
+@FeignClient(name = "inventory-service", fallback = InventoryServiceFeignClientFailover.class, configuration = FeignClientConfig.class)
 public interface InventoryServiceFeignClient {
 
     @RequestMapping(method = RequestMethod.GET, value = BeerInventoryServiceRestTemplateImpl.INVENTORY_PATH)
