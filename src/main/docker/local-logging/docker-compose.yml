@@ -12,9 +12,10 @@ services:
             - 5601:5601
         restart: on-failure
         depends_on:
-            elasticsearch
+            - elasticsearch
     filebeat:
-        image: docker.elastic.co/beat/filebeat:7.7.0
+        image: docker.elastic.co/beats/filebeat:7.7.0
+        command: filebeat -e -strict.perms=false
         volumes:
             - ./filebeat/filebeat.docker.yml:/usr/share/filebeat/filebeat.yml:ro # Configuration file
             - /var/lib/docker/containers:/var/lib/docker/containers:ro # Docker logs
@@ -42,7 +43,7 @@ services:
             - eureka
         environment:
             EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://netflix:eureka@eureka:8761/eureka/
-            EUREKA_INSTANCE_PREFER_IP_ADDRESS: "true"
+            EUREKA_INSTANCE_PREFER_IP_ADDRESS: 'true'
     beer-inventory-service:
         image: arodriguesfreebalance/mssc-beer-inventory-service
         ports:
@@ -52,15 +53,21 @@ services:
             - config
             - jms
         environment:
-            EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://netflix:eureka@eureka:8761/eureka/
-            EUREKA_INSTANCE_PREFER_IP_ADDRESS: "true"
-            SPRING_PROFILES_ACTIVE: local-discovery,local
+            EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://netflix:eureka@192.168.1.202:8761/eureka/
+            EUREKA_INSTANCE_PREFER_IP_ADDRESS: 'true'
+            SPRING_PROFILES_ACTIVE: local,local-discovery
             SPRING_ZIPKIN_BASEURL: http://zipkin
             SPRING_ARTEMIS_HOST: jms
             SPRING_DATASOURCE_URL: jdbc:mysql://host.docker.internal:3306/beerinventoryservice?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+            #SPRING_DATASOURCE_USERNAME: beer_inventory_service
+            #SPRING_DATASOURCE_PASSWORD: password
+            #SPRING_CLOUD_CONFIG_FAIL-FAST: 'true'
+            #SPRING_CLOUD_CONFIG_RETRY_MAX-INTERVAL: 10000
+            #SPRING_CLOUD_CONFIG_RETRY_MAX-ATTEMPTS: 10            
         restart: on-failure
         labels:
-            collect_logs_with_filebeat: "true"  
+            collect_logs_with_filebeat: "true"
+            decode_log_event_to_json_object: "true"  
     beer-inventory-failover:
         image: arodriguesfreebalance/mssc-inventory-failover
         ports:
@@ -70,7 +77,7 @@ services:
             - config
         environment:
             EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://netflix:eureka@eureka:8761/eureka/
-            EUREKA_INSTANCE_PREFER_IP_ADDRESS: "true"
+            EUREKA_INSTANCE_PREFER_IP_ADDRESS: 'true'
         restart: on-failure
     beer-service:
         image: arodriguesfreebalance/mssc-beer-service
@@ -83,14 +90,20 @@ services:
             - beer-inventory-service
         environment:
             EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://netflix:eureka@eureka:8761/eureka/
-            EUREKA_INSTANCE_PREFER_IP_ADDRESS: "true"
-            SPRING_PROFILES_ACTIVE: local-discovery,local 
+            EUREKA_INSTANCE_PREFER_IP_ADDRESS: 'true'
+            SPRING_PROFILES_ACTIVE: local,local-discovery 
             SPRING_ZIPKIN_BASEURL: http://zipkin
             SPRING_ARTEMIS_HOST: jms
             SPRING_DATASOURCE_URL: jdbc:mysql://host.docker.internal:3306/beerservice?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+            #SPRING_DATASOURCE_USERNAME: beer_service
+            #SPRING_DATASOURCE_PASSWORD: password            
+            #SPRING_CLOUD_CONFIG_FAIL-FAST: 'true'
+            #SPRING_CLOUD_CONFIG_RETRY_MAX-INTERVAL: 10000
+            #SPRING_CLOUD_CONFIG_RETRY_MAX-ATTEMPTS: 10                        
         restart: on-failure
         labels:
-            collect_logs_with_filebeat: "true"        
+            collect_logs_with_filebeat: "true"
+            decode_log_event_to_json_object: "true"        
     beer-order-service:
         image: arodriguesfreebalance/mssc-beer-order-service
         ports:
@@ -102,15 +115,21 @@ services:
             - beer-service
         environment:
             EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://netflix:eureka@eureka:8761/eureka/
-            EUREKA_INSTANCE_PREFER_IP_ADDRESS: "true"
-            SPRING_PROFILES_ACTIVE: local-discovery,local
+            EUREKA_INSTANCE_PREFER_IP_ADDRESS: 'true'
+            SPRING_PROFILES_ACTIVE: local,local-discovery
             SPRING_ZIPKIN_BASEURL: http://zipkin
             SPRING_ARTEMIS_HOST: jms
-            SPRING_DATASOURCE_URL: jdbc:mysql://host.docker.internal:3306/beerorderservice?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
             AKR_BREWERY_BEER-SERVICE-HOST: http://beer-service:8080
+            SPRING_DATASOURCE_URL: jdbc:mysql://host.docker.internal:3306/beerorderservice?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+            #SPRING_DATASOURCE_USERNAME: beer_order_service
+            #SPRING_DATASOURCE_PASSWORD: password            
+            #SPRING_CLOUD_CONFIG_FAIL-FAST: 'true'
+            #SPRING_CLOUD_CONFIG_RETRY_MAX-INTERVAL: 10000
+            #SPRING_CLOUD_CONFIG_RETRY_MAX-ATTEMPTS: 10                        
         restart: on-failure
         labels:
-            collect_logs_with_filebeat: "true"        
+            collect_logs_with_filebeat: "true"
+            decode_log_event_to_json_object: "true"        
     gateway:
         image: arodriguesfreebalance/mssc-brewery-gateway
         ports: 
@@ -124,9 +143,10 @@ services:
             - beer-inventory-failover
         environment:
             EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://netflix:eureka@eureka:8761/eureka/
-            EUREKA_INSTANCE_PREFER_IP_ADDRESS: "true"
+            EUREKA_INSTANCE_PREFER_IP_ADDRESS: 'true'
             SPRING_PROFILES_ACTIVE: local-discovery
         restart: on-failure
         labels:
-            collect_logs_with_filebeat: "true"        
+            collect_logs_with_filebeat: "true"
+            decode_log_event_to_json_object: "true"        
                         
