@@ -33,10 +33,11 @@ services:
         environment:
             EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://netflix:eureka@eureka:8761/eureka/
             EUREKA_INSTANCE_PREFER_IP_ADDRESS: 'true'
-            SPRING_PROFILES_ACTIVE: local-discovery,local-secure
+            SPRING_PROFILES_ACTIVE: local-discovery,local
             SPRING_ZIPKIN_BASEURL: http://zipkin
             SPRING_ARTEMIS_HOST: jms
             SPRING_DATASOURCE_URL: jdbc:mysql://host.docker.internal:3306/beerinventoryservice?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+        restart: on-failure 
     beer-inventory-failover:
         image: arodriguesfreebalance/mssc-inventory-failover
         ports:
@@ -59,10 +60,11 @@ services:
         environment:
             EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://netflix:eureka@eureka:8761/eureka/
             EUREKA_INSTANCE_PREFER_IP_ADDRESS: 'true'
-            SPRING_PROFILES_ACTIVE: local-discovery,local-secure 
+            SPRING_PROFILES_ACTIVE: local-discovery,local 
             SPRING_ZIPKIN_BASEURL: http://zipkin
             SPRING_ARTEMIS_HOST: jms
             SPRING_DATASOURCE_URL: jdbc:mysql://host.docker.internal:3306/beerservice?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+        restart: on-failure            
     beer-order-service:
         image: arodriguesfreebalance/mssc-beer-order-service
         ports:
@@ -75,11 +77,12 @@ services:
         environment:
             EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://netflix:eureka@eureka:8761/eureka/
             EUREKA_INSTANCE_PREFER_IP_ADDRESS: 'true'
-            SPRING_PROFILES_ACTIVE: local-discovery,local-secure
+            SPRING_PROFILES_ACTIVE: local-discovery,local
             SPRING_ZIPKIN_BASEURL: http://zipkin
             SPRING_ARTEMIS_HOST: jms
             SPRING_DATASOURCE_URL: jdbc:mysql://host.docker.internal:3306/beerorderservice?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
             AKR_BREWERY_BEER-SERVICE-HOST: http://beer-service:8080
+        restart: on-failure            
     gateway:
         image: arodriguesfreebalance/mssc-brewery-gateway
         ports: 
