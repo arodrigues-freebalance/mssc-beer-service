@@ -48,6 +48,7 @@ services:
         environment:
             EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://netflix:eureka@eureka:8761/eureka/
             EUREKA_INSTANCE_PREFER_IP_ADDRESS: 'true'
+        restart: on-failure
     beer-service:
         image: arodriguesfreebalance/mssc-beer-service
         ports:
@@ -98,4 +99,5 @@ services:
             EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://netflix:eureka@eureka:8761/eureka/
             EUREKA_INSTANCE_PREFER_IP_ADDRESS: 'true'
             SPRING_PROFILES_ACTIVE: local-discovery
+        restart: on-failure
                         
